@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comparateur de prix 2</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <h1 class = "navbar-brand">Comparateur de prix 2</h1>
+        </nav>
+        <div class="container-lg text-center">
+            <form action='/' class="d-flex" role="search" method="post">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+                    <input name="search_product" class="form-control" type="search" placeholder="Rechercher un produit" aria-label="Rechercher">
+                    <button class="btn btn-outline-success" type="submit" href="#">Rechercher</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            {% for product in search_product %}
+                {% if product != '' %}
+                <div class="card" style='width: 90%' >
+                    <img src="{{ product['image'] }}" class="card-img-top" style="width: 10rem;">
+                    <div class="card-body">
+                    <a href="{{ product['link'] }}" class="list-group-item list-group-item-action active" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="card-title mb-1" name="">{{ product['description']}}</h5>
+                        <strong>{{ product['prix']}}</strong>
+                        <p class="card-text mb-1">{{ product['comp']}}</p>
+                        </div>
+                        <p class="card-text mb-1">{{ product['livraison']}}</p>
+                        <small class="card-text">{{ product['seller']}}</small>
+                    </a>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    </body>
+</html>
