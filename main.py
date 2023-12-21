@@ -11,6 +11,7 @@ def index():
             request_search = request.form['search_product']
             return render_template('product.html', search_product = search.search_Product(request_search))
         else:
-                return render_template('index.html')
+            error_message = "On va avoir du mal à comparer du vide !"    
+            return render_template('error.html')
     else:
         return render_template('index.html')

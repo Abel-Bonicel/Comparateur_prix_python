@@ -11,12 +11,16 @@ def search_Product(req):
     service = Service(executable_path='chromedriver.exe')
     driver = webdriver.Chrome(service=service)
 
+    #Mise en place de l'URL de recherche
     form_req = req.replace(' ', '+')
     driver.get(f'https://www.google.fr/search?q={form_req}&source=lnms&tbm=shop')
     sleep(2)
-    driver.find_element('xpath', "//span[text()='Tout refuser']").click()
 
+    #Refus des cookies
+    driver.find_element('xpath', "//span[text()='Tout refuser']").click()
     sleep(2)
+
+    #Scrapping des éléments des éléments
     global list_product
     list_product = []
     for product in driver.find_elements(By.CLASS_NAME, 'i0X6df')[:20]:
@@ -29,7 +33,8 @@ def search_Product(req):
         prix = product.find_element(By.CLASS_NAME, 'a8Pemb')
         seller = product.find_element(By.CLASS_NAME, 'aULzUe')
         livraison = product.find_element(By.CLASS_NAME, 'vEjMR')
-        result_link = product.find_element(By.TAG_NAME, 'a')
+        div_result_link = product.find_element(By.CLASS_NAME, 'shntl')
+        result_link = div_result_link.find_element(By.TAG_NAME, 'a')
         try: 
             link = result_link.get_attribute('href')
         except:
