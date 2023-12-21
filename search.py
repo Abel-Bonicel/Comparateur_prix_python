@@ -20,7 +20,7 @@ def search_Product(req):
     driver.find_element('xpath', "//span[text()='Tout refuser']").click()
     sleep(2)
 
-    #Scrapping des éléments des éléments
+    #Scrapping des éléments
     global list_product
     list_product = []
     for product in driver.find_elements(By.CLASS_NAME, 'i0X6df')[:20]:
